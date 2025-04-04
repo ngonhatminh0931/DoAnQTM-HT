@@ -1,0 +1,139 @@
+<div class="author">
+    <h1 class="author__heading">Hi, welcome to our blog.</h1>
+    <p class="author__body">Web developer and content creator.</p>
+</div>
+
+
+<div class="login-button-container">
+    <a href="/admin" class="login-button">Login</a>
+</div>
+
+<img src="/img/anh3concho.jpg" alt="person looking out through window" class = "hero-image" width="981" height="528">
+<section class = "articles">
+    <h2 class = "articles__heading">Latest Posts</h2>
+    <ul class = "articles-ul">
+        <% data.forEach(post => { %>
+            <li>
+                <a href="/post/<%= post._id %>">
+                    <span><%= post.title %></span>
+                    <span class="articles-list__date"><%= post.createdAt.toDateString() %></span>
+                </a>
+            </li>
+        <% }) %>
+    </ul>
+    <% if (nextPage !== null) { %>
+        <a href="/?page=<%= nextPage %>" class="pagination">&lt; View Older Posts</a>
+    <% } %>
+</section>
+
+
+
+
+
+
+
+
+<div class="tags-section">
+    <h3>Popular Topics</h3>
+    <div class="tags-container">
+      <a href="#" class="tag">Express.js</a>
+      <a href="#" class="tag">MongoDB</a>
+      <a href="#" class="tag">Async Programming</a>
+      <a href="#" class="tag">REST APIs</a>
+      <a href="#" class="tag">Authentication</a>
+      <a href="#" class="tag">Performance</a>
+      <a href="#" class="tag">Deployment</a>
+      <a href="#" class="tag">Security</a>
+    </div>
+  </div>
+  
+  <!-- HTML elements to be added after the "Latest Posts" section -->
+  <section class="related-resources">
+    <h3>Microsoft Resources on Node.js</h3>
+    <div class="resources-grid">
+      <div class="resource-card">
+        <div class="resource-card__image">
+          <img src="https://learn.microsoft.com/media/logos/logo-ms-social.png" alt="Microsoft Logo">
+        </div>
+        <div class="resource-card__content">
+          <span class="resource-card__tag">Documentation</span>
+          <h4 class="resource-card__title">Get Started with Node.js</h4>
+          <p class="resource-card__description">Official Microsoft documentation for getting started with Node.js development on Windows and Azure.</p>
+          <a href="https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-beginners-tutorial" class="resource-card__link" target="_blank">Read More →</a>
+        </div>
+      </div>
+      
+      <div class="resource-card">
+        <div class="resource-card__image">
+          <img src="https://learn.microsoft.com/media/logos/logo-ms-social.png" alt="Microsoft Logo">
+        </div>
+        <div class="resource-card__content">
+          <span class="resource-card__tag">Azure</span>
+          <h4 class="resource-card__title">Deploy Node.js Apps to Azure</h4>
+          <p class="resource-card__description">Learn how to deploy and scale your Node.js applications using Microsoft Azure services.</p>
+          <a href="https://learn.microsoft.com/en-us/azure/app-service/quickstart-nodejs" class="resource-card__link" target="_blank">Read More →</a>
+        </div>
+      </div>
+      
+      <div class="resource-card">
+        <div class="resource-card__image">
+          <img src="https://learn.microsoft.com/media/logos/logo-ms-social.png" alt="Microsoft Logo">
+        </div>
+        <div class="resource-card__content">
+          <span class="resource-card__tag">Tutorial</span>
+          <h4 class="resource-card__title">Build REST API with Node.js</h4>
+          <p class="resource-card__description">Microsoft's guide to building RESTful APIs with Node.js, Express, and MongoDB.</p>
+          <a href="https://learn.microsoft.com/en-us/azure/app-service/tutorial-nodejs-mongodb-app" class="resource-card__link" target="_blank">Read More →</a>
+        </div>
+      </div>
+      
+      <div class="resource-card">
+        <div class="resource-card__image">
+          <img src="https://learn.microsoft.com/media/logos/logo-ms-social.png" alt="Microsoft Logo">
+        </div>
+        <div class="resource-card__content">
+          <span class="resource-card__tag">VS Code</span>
+          <h4 class="resource-card__title">Debug Node.js Apps in VS Code</h4>
+          <p class="resource-card__description">Comprehensive guide for debugging Node.js applications using Visual Studio Code.</p>
+          <a href="https://learn.microsoft.com/en-us/visualstudio/javascript/debug-nodejs?view=vs-2022" class="resource-card__link" target="_blank">Read More →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Reading progress indicator (to be placed at the top of the page) -->
+  <div class="progress-container">
+    <div class="progress-bar" id="myBar"></div>
+  </div>
+  
+  <!-- Back to top button -->
+  <a href="#" class="back-to-top" id="backToTop">↑</a>
+  
+  <!-- Script to be added at the end of your body -->
+  <script>
+    // Reading progress bar
+    window.onscroll = function() {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      
+      document.getElementById("myBar").style.width = scrolled + "%";
+      
+      // Back to top button visibility
+      const backToTopButton = document.getElementById("backToTop");
+      if (winScroll > 300) {
+        backToTopButton.classList.add("visible");
+      } else {
+        backToTopButton.classList.remove("visible");
+      }
+    };
+    
+    // Back to top functionality
+    document.getElementById("backToTop").addEventListener("click", function(e) {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  </script>
