@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>SignUp</h2>
+        <form action="/signup" method="post">
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="username" placeholder="Enter your name" required autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label for="password">password:</label>
+            <input type="password" id="password" name="password" placeholder="password" required>
+          </div>
+          <button type="submit" class="submit-btn">Submit</button>
+        </form>
+      </div>
+      <div class="bg-shapes">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <script>
+        // Thêm nhiều hình tròn nổi
+        const container = document.querySelector('.bg-shapes');
+        for (let i = 0; i < 10; i++) {
+          const bubble = document.createElement('span');
+          bubble.style.left = `${Math.random() * 100}%`;
+          bubble.style.width = `${40 + Math.random() * 60}px`;
+          bubble.style.height = bubble.style.width;
+          bubble.style.animationDuration = `${10 + Math.random() * 10}s`;
+          container.appendChild(bubble);
+        }
+      </script>
+      
+</body>
+</html>
