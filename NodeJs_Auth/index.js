@@ -1,7 +1,11 @@
+require('dotenv').config();
+
 const express = require("express");
 const path = require("path");
-const collection = require("./config");
+const { connectDB, collection } = require('./config');
 const bcrypt = require('bcrypt');
+
+connectDB();
 
 const app = express();
 // convert data into json format
@@ -41,7 +45,7 @@ app.post("/signup", async (req, res) => {
         const hashedPassword = await bcrypt.hash(data.password, saltRounds);
         data.password = hashedPassword;
 
-        await collection.insertOne(data);
+        await collection.create(data);
 
         // Trả về trang login với thông báo thành công
         res.render("login", { message: "Đăng ký thành công! Vui lòng đăng nhập." });
@@ -71,8 +75,8 @@ app.post("/login", async (req, res) => {
 
 
 // Define Port for Application
-const port = 3000;
-app.listen(port, () => {
-    console.log(`Server listening on port ${port}`)
+const PORT = process.env.PORT || 3000
+app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`)
 });
 

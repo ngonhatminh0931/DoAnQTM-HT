@@ -1,11 +1,22 @@
 const mongoose = require('mongoose');
 
 // Thêm các tùy chọn cần thiết cho kết nối
-const connect = mongoose.connect("mongodb+srv://nhansprite:JxjQeU7zaTdaQpyp@cluster0.gpn2s9g.mongodb.net/authweb?retryWrites=true&w=majority&appName=Cluster0", {
+/*const connect = mongoose.connect("mongodb+srv://nhansprite:JxjQeU7zaTdaQpyp@cluster0.gpn2s9g.mongodb.net/authweb?retryWrites=true&w=majority&appName=Cluster0", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     serverSelectionTimeoutMS: 5000
-});
+});*/
+
+const connectDB = async () => {
+  
+    try {
+      mongoose.set('strictQuery', false);
+      const conn = await mongoose.connect(process.env.MONGODB_URL);
+      console.log(`Database Connected: ${conn.connection.host}`);
+    } catch (error) {
+      console.log(error);
+    }
+}
 
 // Check database connected or not
 connect.then(() => {
@@ -31,4 +42,7 @@ const Loginschema = new mongoose.Schema({
 // Đảm bảo tên collection là "users" (không phải ở số ít)
 const collection = mongoose.model("users", Loginschema);
 
-module.exports = collection;
+module.exports = {
+    connectDB,
+    collection
+};
