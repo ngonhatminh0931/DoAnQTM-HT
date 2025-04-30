@@ -1,12 +1,5 @@
 const mongoose = require('mongoose');
 
-// Thêm các tùy chọn cần thiết cho kết nối
-/*const connect = mongoose.connect("mongodb+srv://nhansprite:JxjQeU7zaTdaQpyp@cluster0.gpn2s9g.mongodb.net/authweb?retryWrites=true&w=majority&appName=Cluster0", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 5000
-});*/
-
 const connectDB = async () => {
   
     try {
@@ -17,14 +10,6 @@ const connectDB = async () => {
       console.log(error);
     }
 }
-
-// Check database connected or not
-connect.then(() => {
-    console.log("Database Connected Successfully");
-})
-.catch((err) => {
-    console.log("Database cannot be Connected:", err);
-});
 
 // Create Schema
 const Loginschema = new mongoose.Schema({
